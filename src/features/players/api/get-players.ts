@@ -2,6 +2,7 @@ import { client } from '@/lib/axios';
 import { ApiResponse } from '@/lib/types/api';
 import { Player } from '@/lib/types/player';
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import axios from 'axios';
 
 interface GetPlayersParams {
 	page?: number;
@@ -10,7 +11,7 @@ interface GetPlayersParams {
 }
 
 export async function getPlayers(params?: GetPlayersParams): Promise<ApiResponse<Player[]>> {
-	const res = await client.get('/players', { params });
+	const res = await axios.get('/api/players', { params });
 	return res.data;
 }
 
