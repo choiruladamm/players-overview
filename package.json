@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
+		"dev": "next dev -p 8888",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
@@ -24,6 +24,7 @@
 		"nextjs-toploader": "^3.8.16",
 		"react": "^18",
 		"react-dom": "^18",
+		"swiper": "^12.0.3",
 		"tailwind-merge": "^3.2.0",
 		"tailwindcss-animate": "^1.0.7",
 		"zod": "^3.24.2"
