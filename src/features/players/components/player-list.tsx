@@ -1,3 +1,4 @@
+import { PlayerCardSkeleton } from '@/features/players/components/player-card-skeleton';
 import { Player } from '@/lib/types/player';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
@@ -5,9 +6,24 @@ import Image from 'next/image';
 interface PlayerListProps {
 	players: Player[];
 	startRank?: number;
+	isLoading?: boolean;
 }
 
-export const PlayerList = ({ players, startRank = 1 }: PlayerListProps) => {
+export const PlayerList = ({
+	players,
+	startRank = 1,
+	isLoading,
+}: PlayerListProps) => {
+	if (isLoading) {
+		return (
+			<div className='space-y-3'>
+				{Array.from({ length: 10 }).map((_, i) => (
+					<PlayerCardSkeleton key={i} />
+				))}
+			</div>
+		);
+	}
+
 	return (
 		<div className='space-y-2'>
 			{players.map((player, index) => (
@@ -32,7 +48,9 @@ const PlayerCard = ({ player, rank }: PlayerCardProps) => {
 	return (
 		<div className='group flex items-center gap-4 rounded-xl bg-gray-100 p-4 shadow-sm transition-all'>
 			<div className='flex w-12 items-center justify-center'>
-				<span className='text-[35px] font-light text-primary'>{player.ranking}</span>
+				<span className='text-[35px] font-light text-primary'>
+					{player.ranking}
+				</span>
 			</div>
 
 			<div

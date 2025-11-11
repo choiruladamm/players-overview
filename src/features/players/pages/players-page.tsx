@@ -1,8 +1,7 @@
 'use client';
 
 import { useGetPlayers } from '@/features/players/api/get-players';
-import { HeroSlider } from '@/features/players/components/hero-slider';
-import { LoadingScreen } from '@/features/players/components/loading-screen';
+import { HeroSlider } from '@/features/players/components/hero-slider';	
 import { PlayerList } from '@/features/players/components/player-list';
 import { SearchBar } from '@/features/players/components/search-bar';
 import { SearchResultInfo } from '@/features/players/components/search-result-info';
@@ -17,8 +16,6 @@ const PlayersPage = () => {
 		limit: 100,
 		search: debouncedSearch || undefined,
 	});
-
-	if (isLoading) return <LoadingScreen />;
 
 	const players = data?.data || [];
 	const heroPlayers = players.slice(0, 10);
@@ -54,9 +51,13 @@ const PlayersPage = () => {
 			<section id='list-section' className='py-6'>
 				<div className='layout'>
 					{debouncedSearch ? (
-						<PlayerList players={players} startRank={1} />
+						<PlayerList players={players} startRank={1} isLoading={isLoading} />
 					) : (
-						<PlayerList players={listPlayers} startRank={11} />
+						<PlayerList
+							players={listPlayers}
+							startRank={11}
+							isLoading={isLoading}
+						/>
 					)}
 				</div>
 			</section>
