@@ -5,6 +5,8 @@ import { PaginationMeta } from '@/lib/types/api';
 import { PAGINATION_LIMITS } from '@/lib/constants/pagination-constants';
 import { HTTP_STATUS } from '@/lib/constants/http-status-codes';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
 	try {
 		const searchParams = request.nextUrl.searchParams;
